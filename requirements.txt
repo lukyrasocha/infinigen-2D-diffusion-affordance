@@ -1,0 +1,36 @@
+# Infinigen-Affordance Requirements
+# Combined Pipeline: FLUX Image Generation + 4D-Humans SMPL Extraction
+
+# Core dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.21.0
+opencv-python>=4.5.0
+Pillow>=8.0.0
+
+# FLUX Image Generation
+diffusers>=0.30.2
+transformers>=4.25.0
+accelerate>=0.20.0
+
+# 4D-Humans SMPL Extraction
+detectron2
+yacs>=0.1.8
+scipy>=1.7.0
+scikit-image>=0.18.0
+trimesh>=3.15.0
+pyrender>=0.1.45
+pyglet<2
+
+# Configuration and utilities
+hydra-core>=1.2.0
+omegaconf>=2.2.0
+rich>=12.0.0
+
+# Data handling
+tqdm>=4.64.0
+matplotlib>=3.5.0
+
+# Optional: for enhanced functionality
+einops>=0.6.0
+smplx>=0.1.28
