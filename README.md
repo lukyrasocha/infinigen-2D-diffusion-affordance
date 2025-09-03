@@ -1,6 +1,6 @@
 # Infinigen-Affordance: Combined Image Generation + 4D-Humans Pipeline
 
-This repository integrates **FLUX image generation** with **4D-Humans SMPL extraction** to create a comprehensive pipeline for generating realistic images of people on beds and automatically extracting 3D human body models.
+This repository integrates **FLUX image generation** with **4D-Humans SMPL extraction** to create a pipeline for generating realistic images of people on beds and automatically extracting 3D human body models.
 
 ## Features
 
@@ -15,11 +15,10 @@ This repository integrates **FLUX image generation** with **4D-Humans SMPL extra
 - Generate 3D mesh files (.obj) and rendered visualizations
 - Multiple view renders (front, side, top)
 
-🔄 **Integrated Pipeline**
+🔄 **Pipeline**
 - End-to-end workflow from text prompt to 3D model
 - Optimized for bed/furniture affordance scenarios
-- Batch processing capabilities
-- **Self-contained**: 4D-Humans included in repository
+- 4D-Humans included in repository
 
 ## Quick Start
 
@@ -27,17 +26,15 @@ This repository integrates **FLUX image generation** with **4D-Humans SMPL extra
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd infinigen-affordance
+git clone git@github.com:lukyrasocha/infinigen-2D-diffusion-affordance.git
+cd infinigen-2D-diffusion-affordance
 
 # Install dependencies
 pip install -r requirements.txt
 
-# The 4D-Humans model is included in the repository
-# No additional setup required!
 ```
 
-### 2. Basic Usage
+### 2. Usage
 
 ```bash
 # Generate a person lying on a bed
@@ -56,8 +53,6 @@ python example.py
 ```
 
 ## Repository Structure
-
-This repository is **completely self-contained** and includes all necessary components:
 
 ```
 infinigen-affordance/
@@ -92,7 +87,6 @@ infinigen-affordance/
 - Text description of the person and pose
 - Examples:
   - "a person with blue jeans and white t-shirt lying comfortably on a bed"
-  - "a woman in elegant dress sitting gracefully on a bed reading a book"
   - "a man in business suit lying on a bed reading a book"
 
 ## Output Files
@@ -161,8 +155,6 @@ if smpl_results:
 
 ## Integration with Infinigen
 
-This pipeline is designed to integrate seamlessly with other Infinigen affordance generation tools:
-
 1. **Scene Generation**: Use Infinigen to generate bed/bedroom scenes
 2. **Person Placement**: Use this pipeline to add realistic people to scenes
 3. **SMPL Extraction**: Extract precise 3D human models for simulation
@@ -171,9 +163,8 @@ This pipeline is designed to integrate seamlessly with other Infinigen affordanc
 ## Technical Details
 
 ### Resolution Optimization
-- Generated images: 800x800 for high quality
-- SMPL rendering: 256x256 for optimal mesh alignment
-- The pipeline automatically handles resolution scaling
+- Generated images: 800x800 
+- SMPL rendering: 256x256 
 
 ### Model Dependencies
 - **FLUX.1-Fill-dev**: `black-forest-labs/FLUX.1-Fill-dev`
@@ -205,25 +196,3 @@ This pipeline is designed to integrate seamlessly with other Infinigen affordanc
    # Ensure 4D-Humans path is correct
    export PYTHONPATH=/root/4D-Humans:$PYTHONPATH
    ```
-
-### Debug Mode
-```bash
-# Enable verbose output
-python combined_pipeline.py --prompt "..." --verbose
-```
-
-## Contributing
-
-This pipeline combines multiple state-of-the-art models:
-- FLUX.1-Fill-dev for image generation
-- 4D-Humans for SMPL extraction
-- Detectron2 for human detection
-
-Contributions for improving integration, performance, and accuracy are welcome!
-
-## License
-
-Please refer to the individual model licenses:
-- FLUX: Flux.1 Model License
-- 4D-Humans: See 4D-Humans repository
-- Detectron2: Apache 2.0

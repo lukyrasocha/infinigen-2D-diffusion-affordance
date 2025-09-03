@@ -1,11 +1,6 @@
 #!/usr/bin/env python3
 """
 Combined Pipeline: FLUX Image Generation + 4D-Humans SMPL Extraction
-Integrated into infinigen-affordance repository
-
-This script combines:
-1. FLUX image generation (person on bed)
-2. 4D-Humans pose and shape estimation
 
 Usage:
 python combined_pipeline.py --bed_image images/bed3.png --mask_image images/mask.jpg --prompt "your prompt"
@@ -22,11 +17,9 @@ import torch
 import json
 from typing import Optional
 
-# Add the local 4D-Humans directory to Python path
 script_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.join(script_dir, '4D-Humans'))
 
-# FLUX/Image Generation imports
 from diffusers import FluxFillPipeline
 from diffusers.utils import load_image
 
@@ -56,7 +49,7 @@ class CombinedPipeline:
             detector: Detector type ('vitdet' or 'regnety')
             device: Torch device to use
         """
-        print("Initializing Combined Pipeline...")
+        print("Initializing Combined Pipeline")
         
         if device is None:
             self.device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
@@ -162,7 +155,6 @@ class CombinedPipeline:
         """
         print("Extracting SMPL parameters...")
         
-        # Convert PIL to cv2 if needed
         if hasattr(image, 'convert'):  # PIL Image
             img_cv2 = cv2.cvtColor(np.array(image.convert('RGB')), cv2.COLOR_RGB2BGR)
         else:  # Already cv2 format
@@ -175,7 +167,7 @@ class CombinedPipeline:
         boxes = det_instances.pred_boxes.tensor[valid_idx].cpu().numpy()
         
         if len(boxes) == 0:
-            print("No humans detected in the image!")
+            print("No humans detected in the image")
             return None
         
         print(f"Detected {len(boxes)} person(s) in the image")
@@ -255,11 +247,10 @@ class CombinedPipeline:
             vertices = result['vertices']
             cam_t = result['camera_translation']
             
-            # Resize image to 256x256 for better mesh overlay alignment with training resolution
+            # Resize image to 256x256 for mesh overlay alignment
             original_height, original_width = img_cv2.shape[:2]
             img_cv2_resized = cv2.resize(img_cv2, (256, 256))
             
-            # Get image dimensions
             img_height, img_width = img_cv2_resized.shape[:2]
             
             # Prepare image tensor with correct normalization
@@ -358,17 +349,14 @@ class CombinedPipeline:
         print("INFINIGEN-AFFORDANCE: Image Generation + 4D-Humans Pipeline")
         print("=" * 70)
         
-        # Step 1: Generate image
         print("\nSTEP 1: Generating image...")
         generated_image = self.generate_image(
             bed_image_path, mask_image_path, prompt, **generation_kwargs
         )
         
-        # Step 2: Extract SMPL parameters
         print("\nSTEP 2: Extracting SMPL parameters...")
         smpl_results = self.extract_smpl_from_image(generated_image)
         
-        # Step 3: Save all results
         print("\nSTEP 3: Saving results...")
         self.save_results(generated_image, smpl_results, output_dir, base_filename)
         
@@ -405,7 +393,6 @@ def main():
     
     args = parser.parse_args()
     
-    # Change to infinigen-affordance directory
     script_dir = os.path.dirname(os.path.abspath(__file__))
     os.chdir(script_dir)
     

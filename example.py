@@ -9,11 +9,8 @@ from combined_pipeline import CombinedPipeline
 
 def main():
     # Initialize the pipeline
-    print("🚀 Initializing Self-Contained Infinigen-Affordance Pipeline...")
-    print("📦 Using integrated 4D-Humans (no external dependencies!)")
     pipeline = CombinedPipeline(detector='vitdet')
     
-    # Example 1: Person lying on bed
     print("\n" + "="*50)
     print("EXAMPLE 1: Person lying comfortably on bed")
     print("="*50)
@@ -31,7 +28,6 @@ def main():
         seed=42
     )
     
-    # Example 2: Person sitting on bed
     print("\n" + "="*50)
     print("EXAMPLE 2: Person sitting on bed")
     print("="*50)
@@ -49,8 +45,7 @@ def main():
         seed=123
     )
     
-    # Print summary
-    print("\n" + "🎉 PIPELINE COMPLETE! 🎉")
+    print("PIPELINE COMPLETE")
     print("="*50)
     
     total_people = 0
@@ -61,17 +56,6 @@ def main():
     if smpl_results2:
         total_people += len(smpl_results2)
         print(f"✅ Example 2: Generated image and extracted SMPL for {len(smpl_results2)} person(s)")
-    
-    print(f"\n📊 Total people processed: {total_people}")
-    print("\n📁 Output files saved in 'output/' directory:")
-    print("   • *_generated.png - Generated images")
-    print("   • *_person_*_render.png - SMPL mesh renders")
-    print("   • *_person_*_side_view.png - Side view renders")
-    print("   • *_person_*_top_view.png - Top view renders")
-    print("   • *_person_*.obj - 3D mesh files")
-    print("   • *_person_*_smpl.json - SMPL parameters")
-    
-    print("\n🎯 Ready for integration with other affordance generation tools!")
 
 if __name__ == '__main__':
     main()
