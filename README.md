@@ -48,7 +48,6 @@ python combined_pipeline.py \
 ### 3. Run Examples
 
 ```bash
-# Run comprehensive examples
 python example.py
 ```
 
