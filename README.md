@@ -1,6 +1,7 @@
 # Infinigen-Affordance: 2D Diffusion + 4D-Humans SMPL Extraction
 
 > This was one of my earlier experiments. Is not robust towards people in beds due to out of distribution training data
+> Also it is necessary to figure out a more robust way to infer camera intrinsics, as the default pipeline uses a predefined camera model which doesn't match the one defined in blender. An interesting direction could be the usage of metric-HMR
 
 This repository integrates **FLUX image generation** with **4D-Humans SMPL extraction** to create a pipeline for generating realistic images of people on beds and automatically extracting 3D human body models.
 
