@@ -1,4 +1,6 @@
-# Infinigen-Affordance: Combined Image Generation + 4D-Humans Pipeline
+# Infinigen-Affordance: 2D Diffusion + 4D-Humans SMPL Extraction
+
+> This was one of my earlier experiments. Is not robust towards people in beds due to out of distribution training data
 
 This repository integrates **FLUX image generation** with **4D-Humans SMPL extraction** to create a pipeline for generating realistic images of people on beds and automatically extracting 3D human body models.
 
